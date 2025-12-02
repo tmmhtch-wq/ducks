@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>All About Ducks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f6fbf6; /* soft cream-green */
+      --accent: #facc15; /* duck yellow */
+      --accent-dark: #f97316; /* orange accent */
+      --accent-soft: #fff7d6; /* pale yellow */
+      --leaf: #22c55e; /* green for accents */
+      --pond: #38bdf8; /* pond/sky blue */
+      --text: #14322b; /* deep teal/brown for readable text */
+      --muted: #55706a; /* muted teal */
+      --card-bg: #fffef8; /* warm card background */
+      --border-radius: 18px;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #e6f9ff 0, var(--bg) 40%, #f0fff4 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header / Nav */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+      background: rgba(243, 247, 252, 0.88);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* Simple logo mark */
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: inline-grid;
+      place-items: center;
+      background: linear-gradient(180deg, var(--accent-soft), var(--accent));
+      font-size: 18px;
+      box-shadow: 0 6px 16px rgba(16,24,40,0.06);
+    }
+
+    nav {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.1rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.12);
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.active {
+      background: #ffffff;
+      color: #111827;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 3.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 3rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      margin-bottom: 0.7rem;
+    }
+
+    p.lead {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 1.4rem;
+      max-width: 40rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.7rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #f97316, #facc15);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text p {
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      background: radial-gradient(circle at top left, var(--accent-soft), var(--accent-dark));
+      color: #0b1b17;
+      box-shadow: 0 15px 30px rgba(249, 115, 22, 0.45);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 34px rgba(249, 115, 22, 0.6);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.7rem 1.2rem;
+      border: 1px dashed rgba(85, 112, 106, 0.7);
+      background: rgba(255, 255, 240, 0.9);
+      font-size: 0.9rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-pixel-card {
+      position: relative;
+      background: radial-gradient(circle at top, var(--accent-soft), #fde9b1, #fffbe6);
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem 1.4rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-height: 260px;
+    }
+
+    .hero-pixel-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.7) 0, transparent 60%),
+        radial-gradient(circle at 80% 0, rgba(56,189,248,0.3) 0, transparent 60%),
+        radial-gradient(circle at 0 80%, rgba(52,211,153,0.3) 0, transparent 55%);
+      opacity: 0.7;
+    }
+
+    /* Photo placeholder styles */
+    .photo-placeholder {
+      width: 100%;
+      height: 140px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
+      border: 1px dashed rgba(85,112,106,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(20,50,43,0.6);
+      font-weight: 600;
+      gap: 0.6rem;
+    }
+
+    .card-photo.photo-placeholder {
+      height: 120px;
+      margin-bottom: 0.9rem;
+    }
+
+    /* When a real image is used inside a placeholder */
+    .photo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .pixel-duck-card-caption {
+      position: relative;
+      text-align: center;
+      font-size: 0.86rem;
+      color: #7c2d12;
+      font-weight: 500;
+    }
+
+    /* Duck of the Day */
+
+    .duck-of-day {
+      margin: 3rem 0 3.5rem;
+    }
+
+    .duck-of-day-card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      padding: 1.25rem 1.4rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .duck-of-day-emoji {
+      font-size: 2.1rem;
+      flex-shrink: 0;
+    }
+
+    .duck-of-day-main {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .duck-of-day-title {
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .duck-of-day-name {
+      font-weight: 800;
+    }
+
+    .duck-of-day-refresh {
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      padding: 0.45rem 0.95rem;
+      background: #fefce8;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Grids / cards */
+
+    .grid {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.25rem 1.3rem 1.35rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .duck-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.45rem;
+    }
+
+    .duck-tag {
+      font-size: 0.75rem;
+      padding: 0.22rem 0.55rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+    }
+
+    .duck-more-btn {
+      margin-top: 0.6rem;
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: none;
+      background: #eef2ff;
+      cursor: pointer;
+    }
+
+    .facts-list {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .facts-list li {
+      position: relative;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.28rem;
+    }
+
+    .facts-list li::before {
+      content: "▢";
+      position: absolute;
+      left: 0;
+      top: -1px;
+      font-size: 0.7rem;
+      color: var(--accent-dark);
+    }
+
+    /* Quiz */
+
+    .quiz-card label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.45rem;
+      cursor: pointer;
+    }
+
+    .quiz-card input[type="radio"] {
+      margin-right: 0.4rem;
+    }
+
+    /* Quiz progress bar + result highlighting */
+    .progress-container {
+      margin-bottom: 0.9rem;
+    }
+
+    .progress-info {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+
+    .progress-bar-bg {
+      flex: 1;
+      height: 10px;
+      background: rgba(148, 163, 184, 0.12);
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+      transition: width 450ms ease, background 300ms ease;
+    }
+
+    /* Screen-reader only utility */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* Visible theme label */
+    .theme-label {
+      margin-left: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+      display: inline-block;
+      vertical-align: middle;
+      transition: color 220ms ease, transform 220ms ease;
+    }
+
+    /* Toggle active animation */
+    #theme-toggle {
+      transition: transform 220ms ease, background-color 220ms ease;
+    }
+
+    #theme-toggle.active {
+      transform: rotate(-10deg) scale(1.06);
+    }
+
+    /* Theme toggle styling */
+    #theme-toggle {
+      padding: 0.45rem 0.6rem;
+      font-size: 1rem;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    /* Smooth transitions when switching themes */
+    body,
+    header,
+    main,
+    .card,
+    .hero-pixel-card,
+    .duck-of-day-card,
+    .btn-primary,
+    .btn-ghost,
+    .nav-link,
+    .pill,
+    .duck-more-btn {
+      transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
+    }
+
+    /* Focus-visible styling for accessibility */
+    #theme-toggle:focus-visible {
+      outline: 3px solid rgba(34,197,94,0.18);
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.06);
+      border-radius: 10px;
+    }
+
+    /* Ensure a visible focus style for keyboard users on interactive elements */
+    .btn-ghost:focus-visible,
+    .btn-primary:focus-visible,
+    .duck-more-btn:focus-visible,
+    .nav-link:focus-visible {
+      outline: 2px solid rgba(21,128,61,0.12);
+      outline-offset: 3px;
+    }
+
+    /* Classic theme overrides (applies when body has data-theme="classic") */
+    body[data-theme="classic"] {
+      --bg: #f3f7fc;
+      --accent: #ffbf47;
+      --accent-dark: #f97316;
+      --accent-soft: #fff3c4;
+      --leaf: #22c55e;
+      --pond: #38bdf8;
+      --text: #243b53;
+      --muted: #627d98;
+      --card-bg: #ffffff;
+    }
+
+    /* Explicit duck theme (applies when body has data-theme="duck") */
+    body[data-theme="duck"] {
+      --bg: #f6fbf6;
+      --accent: #facc15;
+      --accent-dark: #f97316;
+      --accent-soft: #fff7d6;
+      --leaf: #22c55e;
+      --pond: #38bdf8;
+      --text: #14322b;
+      --muted: #55706a;
+      --card-bg: #fffef8;
+    }
+
+    .quiz-card label.correct {
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .quiz-card label.incorrect {
+      color: #991b1b;
+      font-weight: 700;
+    }
+
+    .quiz-card label.correct-answer {
+      outline: 2px dashed rgba(34,197,94,0.12);
+      border-radius: 6px;
+      padding: 0.18rem 0.25rem;
+    }
+
+    .quiz-card h3 {
+      margin-top: 1.4rem;
+      margin-bottom: 0.28rem;
+      font-size: 0.98rem;
+    }
+
+    .quiz-card h3:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    .quiz-result {
+      margin-top: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .quiz-result.correct {
+      color: #16a34a;
+    }
+
+    .quiz-result.incorrect {
+      color: #b91c1c;
+    }
+
+    /* Confetti */
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      opacity: 0.9;
+      border-radius: 2px;
+      animation: confetti-fall linear forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% {
+        transform: translate3d(0, 0, 0) rotateZ(0deg);
+      }
+      50% {
+        transform: translate3d(var(--x-offset), 50vh, 0) rotateZ(180deg);
+      }
+      100% {
+        transform: translate3d(calc(var(--x-offset) * 2), 100vh, 0) rotateZ(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Reveal animation */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Duck detail modal */
+
+    .duck-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+
+    .duck-modal.open {
+      display: flex;
+    }
+
+    .duck-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+    }
+
+    .duck-modal-card {
+      position: relative;
+      z-index: 1;
+      max-width: 460px;
+      width: 92%;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.4rem 1.5rem 1.2rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+      animation: modal-pop 0.22s ease-out;
+    }
+
+    @keyframes modal-pop {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .duck-modal-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .duck-modal-subtitle {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .duck-modal-list {
+      list-style: none;
+      margin-bottom: 0.9rem;
+    }
+
+    .duck-modal-list li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .duck-modal-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent-dark);
+    }
+
+    .duck-modal-close {
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #f9fafb;
+      cursor: pointer;
+      float: right;
+    }
+
+    /* Footer */
+
+    .footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.25);
+      padding-top: 1.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer span {
+      font-size: 1.1rem;
+      margin-right: 0.25rem;
+    }
+
+    /* For Hannah footer */
+    .hannah-footer {
+      margin-top: 1.2rem;
+      padding: 1.2rem 0 0.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--muted);
+    }
+    .hannah-footer .hannah-photo {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+    }
+    .hannah-footer img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .hannah-footer .hannah-caption {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-pixel-card {
+        order: -1;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .duck-of-day {
+        margin-top: 2rem;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      main {
+        padding-inline: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark" aria-hidden="true">🦆</div>
+      <span>DuckWorld</span>
+    </div>
+    <nav>
+      <a href="#intro" class="nav-link" data-section="intro">Intro</a>
+      <a href="#types" class="nav-link" data-section="types">Duck Types</a>
+      <a href="#habitat" class="nav-link" data-section="habitat">Habitats</a>
+      <a href="#quiz" class="nav-link" data-section="quiz">Quiz</a>
+    </nav>
+    
+  </div>
+</header>
+
+<main>
+  <!-- HERO / INTRO -->
+  <section class="hero reveal" id="intro">
+    <div class="hero-text">
+      <h1 class="hero-title">Welcome to <span>DuckWorld</span> 🦆</h1>
+      <p>
+        Ducks are clever, social waterbirds found all around the planet. Discover how they live,
+        what they eat, and why they’re more than just “quack quack” at the pond.
+      </p>
+
+      <div class="pill-row">
+        <div class="pill">🌍 Live almost everywhere on Earth</div>
+        <div class="pill">🪶 Waterproof feathers keep them afloat</div>
+        <div class="pill">🦆 Over 100 duck species worldwide</div>
+      </div>
+
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="document.querySelector('#types').scrollIntoView({behavior: 'smooth'})">
+          Explore duck species
+        </button>
+        <button class="btn-ghost" onclick="document.querySelector('#quiz').scrollIntoView({behavior: 'smooth'})">
+          Take the duck quiz →
+        </button>
+        <button class="btn-ghost" onclick="playQuack()">
+          ▶️ Play quack sound
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-pixel-card">
+      <div class="photo-placeholder" aria-hidden="false">
+        <img src="20121007_182708.jpg" alt="A duck in the garden">
+      </div>
+      <p class="pixel-duck-card-caption">
+        Fun fact: some ducks can sleep with one eye open to watch for danger!
+      </p>
+    </div>
+  </section>
+
+  <!-- DUCK OF THE DAY -->
+  <section class="duck-of-day reveal" aria-label="Duck of the day">
+    <div class="duck-of-day-card">
+      <div class="duck-of-day-emoji" id="duck-of-day-emoji">🦆</div>
+      <div class="duck-of-day-main">
+        <div class="duck-of-day-title">Duck of the Day:</div>
+        <div class="duck-of-day-name" id="duck-of-day-name">Mallard</div>
+        <p class="duck-of-day-fact" id="duck-of-day-fact">
+          A classic pond duck with a bright green head and a yellow bill.
+        </p>
+      </div>
+      <button class="duck-of-day-refresh" onclick="refreshDuckOfDay()">
+        🔄 New duck
+      </button>
+    </div>
+  </section>
+
+  <!-- DUCK TYPES -->
+  <section id="types" class="reveal">
+    <h2>Common Types of Ducks</h2>
+    <p class="lead">
+      There are many duck species around the world. Here are nine you might spot in ponds,
+      parks, wetlands, and nature documentaries.
+    </p>
+
+    <div class="grid grid-3">
+      <!-- 1 -->
+      <article class="card reveal">
+        <h3>🟩 Mallard</h3>
+        <p>
+          One of the most familiar wild ducks. Males have a bright green head, yellow bill,
+          and a white ring around the neck.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Wild</span>
+          <span class="duck-tag">Ponds & lakes</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('mallard')">More about mallards</button>
+      </article>
+
+      <!-- 2 -->
+      <article class="card reveal">
+        <h3>⬜ Pekin Duck</h3>
+        <p>
+          Large, white domestic ducks often seen on farms. They have orange bills and feet
+          and are descended from mallards.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Domestic</span>
+          <span class="duck-tag">Farm</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('pekin')">More about pekins</button>
+      </article>
+
+      <!-- 3 -->
+      <article class="card reveal">
+        <h3>🎨 Wood Duck</h3>
+        <p>
+          Famous for their colourful, patterned feathers. They nest in tree cavities near
+          rivers, lakes, and swamps.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Colourful</span>
+          <span class="duck-tag">Forest wetlands</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('wood')">More about wood ducks</button>
+      </article>
+
+      <!-- 4 extra -->
+      <article class="card reveal">
+        <h3>🌿 Teal</h3>
+        <p>
+          Small dabbling ducks that feed in shallow water. Many species have striking
+          green or blue patches on their wings.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Small</span>
+          <span class="duck-tag">Shallow wetlands</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('teal')">More about teal</button>
+      </article>
+
+      <!-- 5 extra -->
+      <article class="card reveal">
+        <h3>🧡 Mandarin Duck</h3>
+        <p>
+          A spectacular duck with bright orange “sails” on the back. Originally from East
+          Asia, but now found in parks elsewhere too.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Ornamental</span>
+          <span class="duck-tag">Wooded ponds</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('mandarin')">More about mandarins</button>
+      </article>
+
+      <!-- 6 extra -->
+      <article class="card reveal">
+        <h3>🧊 Eider</h3>
+        <p>
+          A sea duck that lives in cold northern oceans. Their super-soft down feathers
+          are famously warm and insulating.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Sea duck</span>
+          <span class="duck-tag">Cold coasts</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('eider')">More about eiders</button>
+      </article>
+
+      <!-- 7 extra -->
+      <article class="card reveal">
+        <h3>🔍 Northern Shoveler</h3>
+        <p>
+          Known for its long, wide bill used like a sieve to filter tiny food out of the water.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Filter feeder</span>
+          <span class="duck-tag">Shallow lakes</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('shoveler')">More about shovelers</button>
+      </article>
+
+      <!-- 8 extra -->
+      <article class="card reveal">
+        <h3>🤍 Muscovy Duck</h3>
+        <p>
+          A large duck with a red, bumpy face. Many domestic Muscovy ducks live in parks
+          and farms.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Domestic</span>
+          <span class="duck-tag">Farm & parks</span>
+        </div>
+        <div class="card-photo photo-placeholder">
+          <img src="duck-photo.jpg" alt="Muscovy duck photo">
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('muscovy')">More about muscovy ducks</button>
+      </article>
+
+      <!-- 9 extra -->
+      <article class="card reveal">
+        <h3>🔵 Scaup</h3>
+        <p>
+          A diving duck that feeds underwater. They often gather in big flocks on open water.
+        </p>
+        <div class="duck-tag-row">
+          <span class="duck-tag">Diving duck</span>
+          <span class="duck-tag">Lakes & bays</span>
+        </div>
+        <button class="duck-more-btn" onclick="openDuckDetail('scaup')">More about scaup</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- HABITAT -->
+  <section id="habitat" class="reveal">
+    <h2>Where Ducks Live & What They Eat</h2>
+    <p class="lead">
+      Ducks can adapt to many environments, as long as there’s water nearby. Their bodies are perfectly built for
+      paddling, dabbling, and diving.
+    </p>
+
+    <div class="grid grid-2">
+      <article class="card reveal">
+        <h3>Habitats</h3>
+        <ul class="facts-list">
+          <li>Ponds, lakes, and rivers</li>
+          <li>Coastal marshes and estuaries</li>
+          <li>Wet grasslands and rice fields</li>
+          <li>City parks and canals</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <h3>Diet</h3>
+        <ul class="facts-list">
+          <li>Aquatic plants and algae</li>
+          <li>Insects, snails, and small crustaceans</li>
+          <li>Seeds and grains</li>
+          <li>Some species dive for fish and invertebrates</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="reveal">
+    <h2>Mini Duck Quiz</h2>
+    <p class="lead">
+      Test your duck knowledge with 10 questions. Get them all right to trigger a pixel confetti celebration!
+    </p>
+
+    <div class="card quiz-card reveal">
+      <div class="progress-container">
+        <div class="progress-info">
+          <span id="progress-text">Answered 0/10</span>
+          <div class="progress-bar-bg" aria-hidden="true">
+            <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <form id="quiz-form">
+        <h3>1. What helps ducks stay waterproof?</h3>
+        <label><input type="radio" name="q1" value="b"> Oil from their feathers</label>
+        <label><input type="radio" name="q1" value="a"> Air pockets in their wings</label>
+        <label><input type="radio" name="q1" value="c"> Magic duck dust</label>
+
+        <h3>2. What do most ducks eat?</h3>
+        <label><input type="radio" name="q2" value="a"> Plants, insects, and small animals</label>
+        <label><input type="radio" name="q2" value="b"> Only fish</label>
+        <label><input type="radio" name="q2" value="c"> Candy</label>
+
+        <h3>3. Which duck is known for its bright green head?</h3>
+        <label><input type="radio" name="q3" value="c"> Mallard</label>
+        <label><input type="radio" name="q3" value="a"> Pekin duck</label>
+        <label><input type="radio" name="q3" value="b"> Wood duck</label>
+
+        <h3>4. Where do wood ducks like to nest?</h3>
+        <label><input type="radio" name="q4" value="b"> Tree cavities</label>
+        <label><input type="radio" name="q4" value="a"> Underground tunnels</label>
+        <label><input type="radio" name="q4" value="c"> Desert dunes</label>
+
+        <h3>5. What is a baby duck called?</h3>
+        <label><input type="radio" name="q5" value="a"> Duckling</label>
+        <label><input type="radio" name="q5" value="b"> Chicklet</label>
+        <label><input type="radio" name="q5" value="c"> Quacker</label>
+
+        <h3>6. How many eyelids do ducks have?</h3>
+        <label><input type="radio" name="q6" value="c"> Three</label>
+        <label><input type="radio" name="q6" value="a"> One</label>
+        <label><input type="radio" name="q6" value="b"> Two</label>
+
+        <h3>7. What helps ducks float on water?</h3>
+        <label><input type="radio" name="q7" value="a"> Air trapped in their feathers</label>
+        <label><input type="radio" name="q7" value="b"> Very heavy bones</label>
+        <label><input type="radio" name="q7" value="c"> Their beak shape</label>
+
+        <h3>8. What sound do most ducks make?</h3>
+        <label><input type="radio" name="q8" value="b"> Quack</label>
+        <label><input type="radio" name="q8" value="a"> Roar</label>
+        <label><input type="radio" name="q8" value="c"> Hiss</label>
+
+        <h3>9. Which continent has no wild ducks?</h3>
+        <label><input type="radio" name="q9" value="c"> Antarctica</label>
+        <label><input type="radio" name="q9" value="a"> Africa</label>
+        <label><input type="radio" name="q9" value="b"> North America</label>
+
+        <h3>10. Why do ducks sometimes sleep with one eye open?</h3>
+        <label><input type="radio" name="q10" value="a"> To watch for predators</label>
+        <label><input type="radio" name="q10" value="b"> Because they love blinking</label>
+        <label><input type="radio" name="q10" value="c"> To stay warm</label>
+      </form>
+
+      <button class="btn-primary" style="margin-top:1rem;" onclick="checkQuiz()">
+        Submit answers
+      </button>
+      <div id="quiz-result" class="quiz-result" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <p><span>🦆</span> DuckWorld · Learn something new every time you visit the pond.</p>
+  </div>
+  <div class="hannah-footer" aria-label="A note for Hannah">
+    <div class="hannah-caption">For Hannah</div>
+  </div>
+</main>
+
+<!-- Sound: you can replace quack.mp3 with your own file in the same folder -->
+<audio id="quack-sound" src="SpotiDownloader.com - The Duck Song - The Duck.mp3" preload="auto"></audio>
+
+<!-- Duck detail modal -->
+<div id="duck-modal" class="duck-modal" aria-hidden="true">
+  <div class="duck-modal-backdrop" onclick="closeDuckModal()"></div>
+  <div class="duck-modal-card" role="dialog" aria-modal="true" aria-labelledby="duck-modal-title">
+    <h3 class="duck-modal-title" id="duck-modal-title">Duck details</h3>
+    <p class="duck-modal-subtitle" id="duck-modal-subtitle"></p>
+    <ul class="duck-modal-list" id="duck-modal-list"></ul>
+    <button class="duck-modal-close" onclick="closeDuckModal()">Close</button>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<script>
+  // QUIZ + CONFETTI
+  function checkQuiz() {
+    const answers = {
+      q1: "b",
+      q2: "a",
+      q3: "c",
+      q4: "b",
+      q5: "a",
+      q6: "c",
+      q7: "a",
+      q8: "b",
+      q9: "c",
+      q10: "a"
+    };
+
+    let score = 0;
+    const total = Object.keys(answers).length;
+
+    for (const q in answers) {
+      const selected = document.querySelector('input[name="' + q + '"]:checked');
+      if (selected && selected.value === answers[q]) {
+        score++;
+      }
+    }
+
+    const result = document.getElementById("quiz-result");
+
+    if (score === total) {
+      result.textContent = "Perfect score! " + score + "/" + total + " 🎉🦆";
+      result.className = "quiz-result correct";
+      launchConfetti();
+    } else {
+      result.textContent = "You scored " + score + "/" + total + ". Keep learning about ducks!";
+      result.className = "quiz-result incorrect";
+    }
+  }
+
+  // Update progress (answered count) visual
+  function updateAnsweredProgress() {
+    const total = 10;
+    const checked = document.querySelectorAll('#quiz-form input[type="radio"]:checked');
+    const count = new Set(Array.from(checked).map(i => i.name)).size; // one per question
+    const percent = Math.round((count / total) * 100);
+    const bar = document.getElementById('progress-bar');
+    const text = document.getElementById('progress-text');
+    if (bar) bar.style.width = percent + '%';
+    if (text) text.textContent = 'Answered ' + count + '/' + total;
+  }
+
+  // Attach listeners to inputs so progress updates live
+  function attachQuizProgressListeners() {
+    const inputs = document.querySelectorAll('#quiz-form input[type="radio"]');
+    inputs.forEach(function (inp) {
+      inp.addEventListener('change', function () {
+        // remove any previous label highlighting when user changes answers
+        const labels = document.querySelectorAll('#quiz-form label');
+        labels.forEach(l => {
+          l.classList.remove('correct', 'incorrect', 'correct-answer');
+        });
+        updateAnsweredProgress();
+      });
+    });
+    updateAnsweredProgress();
+  }
+
+  // Enhanced checkQuiz: mark answers, show incorrect items and animate progress to correct percent
+  function checkQuiz() {
+    const answers = {
+      q1: "b",
+      q2: "a",
+      q3: "c",
+      q4: "b",
+      q5: "a",
+      q6: "c",
+      q7: "a",
+      q8: "b",
+      q9: "c",
+      q10: "a"
+    };
+
+    let score = 0;
+    const total = Object.keys(answers).length;
+    const incorrectList = [];
+
+    // Clear previous markings
+    const allLabels = document.querySelectorAll('#quiz-form label');
+    allLabels.forEach(l => l.classList.remove('correct', 'incorrect', 'correct-answer'));
+
+    for (const q in answers) {
+      const selected = document.querySelector('input[name="' + q + '"]:checked');
+      const correctInput = document.querySelector('input[name="' + q + '"][value="' + answers[q] + '"]');
+      const correctLabel = correctInput ? correctInput.parentElement : null;
+
+      if (selected && selected.value === answers[q]) {
+        score++;
+        // mark selected label as correct
+        if (selected.parentElement) selected.parentElement.classList.add('correct');
+      } else {
+        // mark selected as incorrect (if any) and remember the question
+        if (selected && selected.parentElement) selected.parentElement.classList.add('incorrect');
+        if (correctLabel) correctLabel.classList.add('correct-answer');
+        const correctText = correctLabel ? correctLabel.textContent.trim() : '(answer)';
+        incorrectList.push({ q: q, correctText: correctText });
+      }
+    }
+
+    const result = document.getElementById("quiz-result");
+    if (score === total) {
+      result.textContent = "Perfect score! " + score + "/" + total + " 🎉🦆";
+      result.className = "quiz-result correct";
+      launchConfetti();
+    } else {
+      let msg = "You scored " + score + "/" + total + ". Keep learning about ducks!";
+      // Show which questions were incorrect with the correct answer
+      if (incorrectList.length) {
+        msg += "\nIncorrect or unanswered:\n" + incorrectList.map(i => i.q.toUpperCase() + ': ' + i.correctText).join('\n');
+      }
+      result.textContent = msg;
+      result.className = "quiz-result incorrect";
+    }
+
+    // Animate progress bar to reflect percent-correct
+    const percentCorrect = Math.round((score / total) * 100);
+    const bar = document.getElementById('progress-bar');
+    if (bar) {
+      bar.style.width = percentCorrect + '%';
+      if (percentCorrect === 100) {
+        bar.style.background = 'linear-gradient(90deg,var(--leaf),#10b981)';
+      } else {
+        bar.style.background = 'linear-gradient(90deg,var(--accent-dark),var(--accent))';
+      }
+    }
+  }
+
+  function launchConfetti() {
+    const confettiLayer = document.createElement("div");
+    confettiLayer.className = "confetti-layer";
+    document.body.appendChild(confettiLayer);
+
+    const colors = ["#f97316", "#22c55e", "#3b82f6", "#eab308", "#ec4899"];
+    const pieces = 140;
+
+    for (let i = 0; i < pieces; i++) {
+      const piece = document.createElement("div");
+      piece.className = "confetti-piece";
+
+      const left = Math.random() * 100;
+      const delay = Math.random() * 0.5;
+      const duration = 2.3 + Math.random() * 0.9;
+      const xOffset = (Math.random() - 0.5) * 80 + "px";
+
+      piece.style.left = left + "vw";
+      piece.style.top = "-10px";
+      piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDuration = duration + "s";
+      piece.style.animationDelay = delay + "s";
+      piece.style.setProperty("--x-offset", xOffset);
+
+      confettiLayer.appendChild(piece);
+    }
+
+    setTimeout(function () {
+      confettiLayer.remove();
+    }, 3500);
+  }
+
+  // REVEAL ON SCROLL
+  const revealEls = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  revealEls.forEach(function (el) {
+    observer.observe(el);
+  });
+
+  // NAV ACTIVE HIGHLIGHT
+  const sections = document.querySelectorAll("main section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  function updateActiveNav() {
+    let currentId = null;
+
+    sections.forEach(function (section) {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 110 && rect.bottom >= 110) {
+        currentId = section.id;
+      }
+    });
+
+    navLinks.forEach(function (link) {
+      const target = link.getAttribute("data-section");
+      if (target === currentId) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", updateActiveNav);
+  window.addEventListener("load", updateActiveNav);
+
+  // DUCK OF THE DAY
+  const duckOfDayData = [
+    {
+      id: "mallard",
+      name: "Mallard",
+      emoji: "🟩",
+      fact: "Mallards are the classic park ducks, and many domestic ducks are descended from them."
+    },
+    {
+      id: "pekin",
+      name: "Pekin Duck",
+      emoji: "⬜",
+      fact: "Pekin ducks are big, white, and friendly-looking, often kept on farms."
+    },
+    {
+      id: "wood",
+      name: "Wood Duck",
+      emoji: "🎨",
+      fact: "Wood ducks nest high in tree cavities and ducklings jump down to the ground on their first day."
+    },
+    {
+      id: "teal",
+      name: "Teal",
+      emoji: "🌿",
+      fact: "Teal are tiny dabbling ducks that love shallow, plant-filled water."
+    },
+    {
+      id: "mandarin",
+      name: "Mandarin Duck",
+      emoji: "🧡",
+      fact: "Mandarin males have crazy colourful feathers that look almost painted on."
+    },
+    {
+      id: "eider",
+      name: "Eider",
+      emoji: "🧊",
+      fact: "Eiders line their nests with super soft down feathers that humans have used for duvets."
+    },
+    {
+      id: "shoveler",
+      name: "Northern Shoveler",
+      emoji: "🔍",
+      fact: "This duck’s spoon-shaped bill helps filter tiny food from the water like a sieve."
+    },
+    {
+      id: "muscovy",
+      name: "Muscovy Duck",
+      emoji: "🤍",
+      fact: "Muscovy ducks often wag their tails and hiss instead of quacking."
+    },
+    {
+      id: "scaup",
+      name: "Scaup",
+      emoji: "🔵",
+      fact: "Scaup are diving ducks that form huge flocks on big lakes and coastal bays."
+    }
+  ];
+
+  function pickRandomDuck() {
+    var index = Math.floor(Math.random() * duckOfDayData.length);
+    return duckOfDayData[index];
+  }
+
+  function setDuckOfDay(duck) {
+    document.getElementById("duck-of-day-name").textContent = duck.name;
+    document.getElementById("duck-of-day-fact").textContent = duck.fact;
+    document.getElementById("duck-of-day-emoji").textContent = duck.emoji;
+  }
+
+  function refreshDuckOfDay() {
+    var duck = pickRandomDuck();
+    setDuckOfDay(duck);
+  }
+
+  // DUCK DETAIL MODAL
+  var duckDetails = {
+    mallard: {
+      title: "Mallard (Anas platyrhynchos)",
+      subtitle: "The classic green-headed duck you see in ponds and parks.",
+      points: [
+        "Male mallards have a glossy green head, while females are mottled brown for camouflage.",
+        "They are dabbling ducks – they tip forward to feed instead of diving deep.",
+        "Many domestic duck breeds came from the mallard."
+      ]
+    },
+    pekin: {
+      title: "Pekin Duck",
+      subtitle: "A large, white domestic duck breed with a friendly look.",
+      points: [
+        "Pekin ducks are commonly kept for meat and eggs.",
+        "They have bright orange feet and bills.",
+        "They are usually very calm and used to being around people."
+      ]
+    },
+    wood: {
+      title: "Wood Duck (Aix sponsa)",
+      subtitle: "One of the most colourful ducks in the world.",
+      points: [
+        "Wood ducks nest in tree cavities above water.",
+        "Ducklings leap from the nest to the ground only a day after hatching.",
+        "They have strong claws to grip tree branches."
+      ]
+    },
+    teal: {
+      title: "Teal",
+      subtitle: "Small dabbling ducks that love shallow wetlands.",
+      points: [
+        "Many teal species migrate long distances between seasons.",
+        "They often feed in groups, picking at seeds and insects in the shallows.",
+        "Their small size makes them quick and agile fliers."
+      ]
+    },
+    mandarin: {
+      title: "Mandarin Duck (Aix galericulata)",
+      subtitle: "A duck that looks like it walked out of a painting.",
+      points: [
+        "Males have bright orange “sails” of feathers on their backs.",
+        "They are originally from East Asia but have escaped and bred in other countries.",
+        "Mandarin ducks often choose quiet, wooded ponds."
+      ]
+    },
+    eider: {
+      title: "Eider",
+      subtitle: "A cold-loving sea duck known for its warm down.",
+      points: [
+        "Eiders often live in the Arctic and sub-Arctic regions.",
+        "Their down feathers are among the best natural insulators.",
+        "They dive to the sea floor to feed on shellfish."
+      ]
+    },
+    shoveler: {
+      title: "Northern Shoveler (Spatula clypeata)",
+      subtitle: "A duck with a very distinctive spoon-shaped bill.",
+      points: [
+        "They swing their bill side to side to filter tiny food from the water.",
+        "Males have a green head, white chest, and chestnut sides.",
+        "They often gather and feed in small groups, swimming in circles."
+      ]
+    },
+    muscovy: {
+      title: "Muscovy Duck",
+      subtitle: "A large duck with red facial skin and a quiet, hissing voice.",
+      points: [
+        "Unlike many ducks, Muscovies often hiss instead of quacking.",
+        "They can perch in trees thanks to strong claws.",
+        "Common as domestic ducks in farms and city parks."
+      ]
+    },
+    scaup: {
+      title: "Scaup",
+      subtitle: "A diving duck that forms huge rafts on open water.",
+      points: [
+        "Scaup dive underwater to eat molluscs and other invertebrates.",
+        "They often gather in big flocks called rafts.",
+        "Males have a dark head with a subtle green or purple sheen."
+      ]
+    }
+  };
+
+  function openDuckDetail(id) {
+    var data = duckDetails[id];
+    if (!data) return;
+
+    var modal = document.getElementById("duck-modal");
+    var titleEl = document.getElementById("duck-modal-title");
+    var subtitleEl = document.getElementById("duck-modal-subtitle");
+    var listEl = document.getElementById("duck-modal-list");
+
+    titleEl.textContent = data.title;
+    subtitleEl.textContent = data.subtitle;
+
+    listEl.innerHTML = "";
+    data.points.forEach(function (point) {
+      var li = document.createElement("li");
+      li.textContent = point;
+      listEl.appendChild(li);
+    });
+
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDuckModal() {
+    var modal = document.getElementById("duck-modal");
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  // QUACK SOUND
+  function playQuack() {
+    var audio = document.getElementById("quack-sound");
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play().catch(function () {
+      // Ignore play errors (e.g., autoplay blocked until user interacts)
+    });
+  }
+
+  // INIT
+  window.addEventListener("load", function () {
+    refreshDuckOfDay();
+    updateActiveNav();
+    if (typeof attachQuizProgressListeners === 'function') attachQuizProgressListeners();
+    // ensure toggle works via JS listener as well
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.removeEventListener('click', toggleTheme);
+      toggleBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        toggleTheme();
+      });
+    }
+  });
+
+  // THEME: toggle and persistence
+  function setTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-pressed', (theme === 'classic').toString());
+      btn.textContent = theme === 'classic' ? '🌤️' : '🦆';
+      // toggle visual active class for small animation
+      if (theme === 'classic') btn.classList.add('active'); else btn.classList.remove('active');
+    }
+    try {
+      localStorage.setItem('duckworld-theme', theme);
+    } catch (e) {
+      // ignore storage errors
+    }
+    // Update visible label and screen-reader announcer
+    const lbl = document.getElementById('theme-label');
+    if (lbl) lbl.textContent = theme === 'classic' ? 'Classic' : 'Duck';
+    const ann = document.getElementById('theme-announcer');
+    if (ann) ann.textContent = 'Theme switched to ' + (theme === 'classic' ? 'Classic' : 'Duck') + ' theme.';
+  }
+
+  function toggleTheme() {
+    const current = document.body.getAttribute('data-theme') || 'duck';
+    const next = current === 'classic' ? 'duck' : 'classic';
+    setTheme(next);
+  }
+
+  // Apply saved theme on load
+  (function () {
+    let saved = null;
+    try { saved = localStorage.getItem('duckworld-theme'); } catch (e) { saved = null; }
+    if (saved !== 'classic' && saved !== 'duck') saved = 'duck';
+    setTheme(saved);
+  })();
+</script>
+</body>
+</html>
