@@ -205,13 +205,18 @@
       background: radial-gradient(circle at top left, var(--accent-soft), var(--accent-dark));
       color: #0b1b17;
       box-shadow: 0 15px 30px rgba(249, 115, 22, 0.45);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease, background 0.3s ease, color 0.3s ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
       filter: brightness(1.03);
       box-shadow: 0 18px 34px rgba(249, 115, 22, 0.6);
+    }
+
+    body[data-theme="dark"] .btn-primary {
+      background: radial-gradient(circle at top left, var(--accent-soft), var(--accent-dark));
+      color: #1a1a1a;
     }
 
     .btn-ghost {
@@ -349,6 +354,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-of-day-refresh {
+      background: rgba(55, 65, 81, 0.5);
+      border-color: rgba(107, 114, 128, 0.5);
+      color: var(--text);
     }
 
     /* Grids / cards */
@@ -771,6 +783,13 @@
       background: #f9fafb;
       cursor: pointer;
       float: right;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-modal-close {
+      background: rgba(55, 65, 81, 0.6);
+      border-color: rgba(107, 114, 128, 0.5);
+      color: var(--text);
     }
 
     /* Theme Toggle Button */
