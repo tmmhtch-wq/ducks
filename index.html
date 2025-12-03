@@ -19,6 +19,19 @@
       --shadow: 0 12px 30px rgba(15, 23, 42, 0.09);
     }
 
+    /* Dark theme */
+    body[data-theme="dark"] {
+      --bg: #0f1419;
+      --accent: #fbbf24;
+      --accent-dark: #f97316;
+      --accent-soft: #fed7aa;
+      --leaf: #10b981;
+      --pond: #06b6d4;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --card-bg: #1f2937;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,6 +43,11 @@
       background: radial-gradient(circle at top, #e6f9ff 0, var(--bg) 40%, #f0fff4 100%);
       color: var(--text);
       line-height: 1.7;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-theme="dark"] {
+      background: radial-gradient(circle at top, #1a2332 0, var(--bg) 40%, #0f1419 100%);
     }
 
     a {
@@ -46,6 +64,12 @@
       backdrop-filter: blur(10px);
       background: rgba(243, 247, 252, 0.88);
       border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body[data-theme="dark"] header {
+      background: rgba(15, 20, 25, 0.95);
+      border-bottom-color: rgba(75, 85, 99, 0.3);
     }
 
     .nav-inner {
@@ -86,26 +110,23 @@
       padding: 0.1rem;
       border-radius: 999px;
       background: rgba(148, 163, 184, 0.12);
+      transition: background-color 0.3s ease;
     }
 
-    .nav-link {
-      position: relative;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      color: var(--muted);
-      transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
-    }
-
-    .nav-link:hover {
-      color: var(--text);
-      transform: translateY(-1px);
+    body[data-theme="dark"] nav {
+      background: rgba(55, 65, 81, 0.3);
     }
 
     .nav-link.active {
       background: #ffffff;
       color: #111827;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .nav-link.active {
+      background: #374151;
+      color: #f3f4f6;
     }
 
     main {
@@ -204,13 +225,12 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-bottom: 0.8rem;
+    body[data-theme="dark"] .btn-ghost {
+      background: rgba(55, 65, 81, 0.7);
+      border-color: rgba(107, 114, 128, 0.5);
     }
 
     .pill {
@@ -219,6 +239,13 @@
       padding: 0.35rem 0.85rem;
       font-size: 0.8rem;
       border: 1px solid rgba(148, 163, 184, 0.45);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .pill {
+      background: rgba(55, 65, 81, 0.6);
+      border-color: rgba(107, 114, 128, 0.4);
+    }
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -285,6 +312,12 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 1rem;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-of-day-card {
+      border-color: rgba(180, 150, 20, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
 
     .duck-of-day-emoji {
@@ -339,6 +372,12 @@
       padding: 1.25rem 1.3rem 1.35rem;
       box-shadow: var(--shadow);
       border: 1px solid rgba(148, 163, 184, 0.28);
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    body[data-theme="dark"] .card {
+      border-color: rgba(55, 65, 81, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     }
 
     .card h3 {
@@ -364,6 +403,12 @@
       border-radius: 999px;
       background: #eff6ff;
       border: 1px solid rgba(59, 130, 246, 0.35);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-tag {
+      background: rgba(30, 58, 138, 0.3);
+      border-color: rgba(59, 130, 246, 0.2);
     }
 
     .duck-more-btn {
@@ -374,6 +419,12 @@
       border: none;
       background: #eef2ff;
       cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-more-btn {
+      background: rgba(30, 58, 138, 0.4);
+    }
     }
 
     .facts-list {
@@ -660,6 +711,12 @@
       padding: 1.4rem 1.5rem 1.2rem;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
       animation: modal-pop 0.22s ease-out;
+      transition: background-color 0.3s ease;
+    }
+
+    body[data-theme="dark"] .duck-modal-card {
+      background: #1f2937;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     }
 
     @keyframes modal-pop {
@@ -714,6 +771,32 @@
       background: #f9fafb;
       cursor: pointer;
       float: right;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: transparent;
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      margin-left: auto;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      background: rgba(148, 163, 184, 0.1);
+    }
+
+    body[data-theme="dark"] .theme-toggle {
+      border-color: rgba(75, 85, 99, 0.3);
     }
 
     /* Footer */
@@ -801,12 +884,8 @@
       <span>DuckWorld</span>
     </div>
     <nav>
-      <a href="#intro" class="nav-link" data-section="intro">Intro</a>
-      <a href="#types" class="nav-link" data-section="types">Duck Types</a>
-      <a href="#habitat" class="nav-link" data-section="habitat">Habitats</a>
-      <a href="#quiz" class="nav-link" data-section="quiz">Quiz</a>
     </nav>
-    
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌞</button>
   </div>
 </header>
 
@@ -824,18 +903,6 @@
         <div class="pill">🌍 Live almost everywhere on Earth</div>
         <div class="pill">🪶 Waterproof feathers keep them afloat</div>
         <div class="pill">🦆 Over 100 duck species worldwide</div>
-      </div>
-
-      <div class="hero-cta">
-        <button class="btn-primary" onclick="document.querySelector('#types').scrollIntoView({behavior: 'smooth'})">
-          Explore duck species
-        </button>
-        <button class="btn-ghost" onclick="document.querySelector('#quiz').scrollIntoView({behavior: 'smooth'})">
-          Take the duck quiz →
-        </button>
-        <button class="btn-ghost" onclick="playQuack()">
-          ▶️ Play quack sound
-        </button>
       </div>
     </div>
 
@@ -982,9 +1049,6 @@
         <div class="duck-tag-row">
           <span class="duck-tag">Domestic</span>
           <span class="duck-tag">Farm & parks</span>
-        </div>
-        <div class="card-photo photo-placeholder">
-          <img src="duck-photo.jpg" alt="Muscovy duck photo">
         </div>
         <button class="duck-more-btn" onclick="openDuckDetail('muscovy')">More about muscovy ducks</button>
       </article>
@@ -1549,52 +1613,34 @@
     refreshDuckOfDay();
     updateActiveNav();
     if (typeof attachQuizProgressListeners === 'function') attachQuizProgressListeners();
-    // ensure toggle works via JS listener as well
+    // Initialize theme
+    initTheme();
     const toggleBtn = document.getElementById('theme-toggle');
     if (toggleBtn) {
-      toggleBtn.removeEventListener('click', toggleTheme);
-      toggleBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        toggleTheme();
-      });
+      toggleBtn.addEventListener('click', toggleTheme);
     }
   });
 
   // THEME: toggle and persistence
+  function initTheme() {
+    const saved = localStorage.getItem('duckworld-theme') || 'light';
+    setTheme(saved);
+  }
+
   function setTheme(theme) {
     document.body.setAttribute('data-theme', theme);
     const btn = document.getElementById('theme-toggle');
     if (btn) {
-      btn.setAttribute('aria-pressed', (theme === 'classic').toString());
-      btn.textContent = theme === 'classic' ? '🌤️' : '🦆';
-      // toggle visual active class for small animation
-      if (theme === 'classic') btn.classList.add('active'); else btn.classList.remove('active');
+      btn.textContent = theme === 'dark' ? '☀️' : '🌙';
     }
-    try {
-      localStorage.setItem('duckworld-theme', theme);
-    } catch (e) {
-      // ignore storage errors
-    }
-    // Update visible label and screen-reader announcer
-    const lbl = document.getElementById('theme-label');
-    if (lbl) lbl.textContent = theme === 'classic' ? 'Classic' : 'Duck';
-    const ann = document.getElementById('theme-announcer');
-    if (ann) ann.textContent = 'Theme switched to ' + (theme === 'classic' ? 'Classic' : 'Duck') + ' theme.';
+    localStorage.setItem('duckworld-theme', theme);
   }
 
   function toggleTheme() {
-    const current = document.body.getAttribute('data-theme') || 'duck';
-    const next = current === 'classic' ? 'duck' : 'classic';
+    const current = document.body.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
     setTheme(next);
   }
-
-  // Apply saved theme on load
-  (function () {
-    let saved = null;
-    try { saved = localStorage.getItem('duckworld-theme'); } catch (e) { saved = null; }
-    if (saved !== 'classic' && saved !== 'duck') saved = 'duck';
-    setTheme(saved);
-  })();
 </script>
 </body>
 </html>
